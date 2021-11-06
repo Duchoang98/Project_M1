@@ -8,6 +8,7 @@
           v-model="userEmail"
           placeholder="Email"
           type="text"
+          @keyup.enter="login()"
           required
         />
         <input
@@ -15,6 +16,7 @@
           v-model="userPassword"
           placeholder="Mot de passe"
           type="password"
+          @keyup.enter="login()"
           required
         />
         <!-- {{ errors.login }} -->
@@ -32,7 +34,7 @@
 </template>
 
 <script>
-import * as firebase from 'firebase/auth'
+import {getAuth, signInWithEmailAndPassword} from 'firebase/auth'
 // import { app } from '../main'
 // app
 export default {
@@ -59,8 +61,8 @@ export default {
   
   methods: {
       login() {
-      firebase
-      .signInWithEmailAndPassword( this.userEmail, this.userPassword)
+        const auth = getAuth()
+      signInWithEmailAndPassword(auth, this.userEmail, this.userPassword)
       .then(() => {
         alert('Successfully logged in');
         this.$router.push('/');

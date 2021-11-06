@@ -6,7 +6,7 @@
       
         <input class="input" placeholder="email" type="text" required 
         v-model="userEmail"
-        @keyup.enter="addUser"  
+        @keyup.enter="register()"  
         aria-label="email"
         />
 
@@ -15,7 +15,7 @@
           placeholder="password"
           type="password"
           v-model="userPassword"
-          @keyup.enter="addUser"
+          @keyup.enter="register()"
           aria-label="password"
           required
         />
@@ -34,9 +34,8 @@
 <script>
 // import axios from "axios";
 // const baseURL = "http://localhost:3001/users";
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
-import * as firebase from 'firebase/auth'
 
 export default {
   name:"Register",
@@ -74,8 +73,8 @@ export default {
   
   methods: {
     register(){
-      firebase
-        .createUserWithEmailAndPassword(this.userEmail,this.userPassword)
+      const auth= getAuth()
+        createUserWithEmailAndPassword(auth, this.userEmail,this.userPassword)
         .then(() => {
           alert('successfully registered ! Please login.')
           this.$router.push('/Login')
@@ -83,7 +82,7 @@ export default {
           alert(error.message)
         });
     },
-    abortLogin() {
+    abortRegister() {
         this.userEmail=''
         this.userPassword=''
       }
