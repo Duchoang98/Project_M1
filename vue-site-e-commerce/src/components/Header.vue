@@ -1,35 +1,58 @@
 <template>
-  <div class="header">
+  <div class="header" >
     <div class="top">
-      <img src="../assets/Logo5.png" alt="" class="top-logo" />
+      <router-link to="/">
+        <img src="../assets/LogoSite.png" alt="" class="top-logo" />
+      </router-link>
       <input type="text" placeholder="Search..." class="top-input" />
       <button class="button">
         <i class="fas fa-search"></i>
       </button>
       <ul class="top-connexion">
-        <li><a href="#">Login</a></li>
-        <li><a href="#" class="top-connexion__register">Register</a></li>
+        <router-link to="/Login" >Login</router-link>
+        <router-link to="/Register" class="top-connexion__register"> Register </router-link>
       </ul>
     </div>
     <div class="bottom">
       <ul class="bottom-content">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Gender</a></li>
-        <button class="caret-down">
+        <router-link to="/">Home</router-link>
+        <!-- <li><a href="#">Gender</a></li> -->
+        <!-- <button class="caret-down">
           <i class="fas fa-caret-down"> </i>
-        </button>
-        <li><a href="#">Pays</a></li>
-        <button class="caret-down">
+        </button> -->
+        <div class="dropdown">
+          <button class="dropbtn">Category</button>
+          <div class="dropdown-content">
+            <a href="#">Eastearn</a>
+            <a href="#">Action</a>
+            <a href="#">Comedy</a>
+            <a href="#">Sci-fi</a>
+            <a href="#">Romance</a>
+          </div>
+        </div>
+
+        <!-- <li><a href="#">Pays</a></li> -->
+        
+        <!-- <button class="caret-down">
           <i class="fas fa-caret-down"> </i>
-        </button>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        </button> -->
+        <router-link class="router-link" to="/About">About us</router-link>
       </ul>
     </div>
   </div>
 </template>
 
-<script></script>
+<script>
+// import { getAuth } from 'firebase/auth'
+// const auth = getAuth()
+// const user = auth.currentUser()
+export default {
+  props: {
+    
+  },
+ 
+};
+</script>
 
 <style scoped>
 * {
@@ -117,14 +140,13 @@
   border: none;
   background-color: transparent;
   color: white;
-  
 }
 
 .bottom-content {
   padding: 10px 10px;
   margin-left: 200px;
   display: flex;
-  justify-content:baseline;
+  justify-content: baseline;
   align-items: center;
 }
 .bottom-content li {
@@ -132,4 +154,51 @@
   padding: 0 32px;
 }
 
+.router-link {
+  display: inline-block;
+  padding: 0 32px;
+}
+
+.dropbtn {
+  background-color: transparent;
+  color: white;
+  padding: 8px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
 </style>

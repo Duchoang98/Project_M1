@@ -9,6 +9,7 @@
         <div class="comic-information__top">
             <p class="name">
                 Solo leveling
+                
             </p>
             <p class="note">
                 4.5

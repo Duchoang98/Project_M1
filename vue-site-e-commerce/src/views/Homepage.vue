@@ -1,21 +1,18 @@
 <template>
   <div>
     <ComicRow />
-    <router-link to="/Login">Login</router-link>
-    <router-view></router-view>
-  </div>
+    <ComicRow />
+  </div> 
   
 </template>
 
 <script>
-import ComicRow from "./ComicRow.vue";
+import ComicRow from "../components/ComicRow.vue";
 import BDD from "../BDD";
-import Login from "./Login.vue";
 export default {
   name: "Homepage",
   components: {
     ComicRow,
-    Login
   },
   setup() {
     console.log(BDD);
