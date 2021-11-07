@@ -34,18 +34,28 @@
 </template>
 
 <script>
-import {getAuth, signInWithEmailAndPassword} from 'firebase/auth'
-// import { app } from '../main'
-// app
+import firebase from 'firebase'
+import { onBeforeMount } from 'vue'
+import {useRoute, useRouter} from 'vue-router'
 export default {
   components: {
-    //   'Header': Header,
   },
   
-  // props: {
-  //   connected: { type: Boolean },
-  //   errors: { type: Object }
-  // },
+  setup(){
+      const router = useRouter()
+    const route = useRoute()
+
+     onBeforeMount(()=>{
+       firebase.auth().onAuthStateChanged((user)=>{
+        if(user){
+          if(route.name == 'Login' || route.name == 'Register' ){
+            router.replace('/')
+          }
+        }
+      })
+    })
+  },
+  
   data () {
     return {
       userEmail:"",
@@ -61,8 +71,8 @@ export default {
   
   methods: {
       login() {
-        const auth = getAuth()
-      signInWithEmailAndPassword(auth, this.userEmail, this.userPassword)
+        firebase.auth()
+      .signInWithEmailAndPassword(this.userEmail, this.userPassword)
       .then(() => {
         alert('Successfully logged in');
         this.$router.push('/');

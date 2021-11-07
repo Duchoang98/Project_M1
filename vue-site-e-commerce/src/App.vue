@@ -1,25 +1,21 @@
 <template>
   <div id="nav">
-    <!-- <router-link to="/">Home</router-link> 
-    <router-link to="/about">About us</router-link>
-    <router-link to="/login">Login</router-link>
-    <router-link to="/register">Register</router-link> -->
     <Header />
-    <!-- <Homepage /> -->
+    <Footer />
     <router-view/>
   </div>
   
 </template>
 <script>
 import Header from "./components/Header.vue"
-// import Homepage from "./components/Homepage.vue"
-
+import Footer from './components/Footer.vue'
 
 export default {
   name: '',
   components: {
     Header,
-    // Homepage,
+    Footer,
+  
   }
 }
 </script>

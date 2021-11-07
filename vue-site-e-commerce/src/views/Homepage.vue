@@ -1,7 +1,6 @@
 <template>
   <div>
     <ComicRow />
-    <ComicRow />
   </div> 
   
 </template>

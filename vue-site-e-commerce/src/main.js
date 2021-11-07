@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import * as firebase from 'firebase/app'
+import  firebase from 'firebase'
 // import {Alert} from '@coreui/vue'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 // import '@coreui/dist/css/coreui.min.css'

@@ -2,8 +2,20 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Homepage from '../views/Homepage.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import BookPage from '../components/BookPage.vue'
+import Category from '../components/Category.vue'
 
 const routes = [
+  {
+    path:'/Category',
+    name: Category,
+    component: Category
+  },
+  {
+    path:'/BookPage',
+    name:'BookPage',
+    component: BookPage
+  },
   {
     path: '/',
     name: 'Homepage',

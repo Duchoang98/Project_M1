@@ -34,18 +34,28 @@
 <script>
 // import axios from "axios";
 // const baseURL = "http://localhost:3001/users";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-
-
+import firebase from 'firebase'
+import { onBeforeMount } from 'vue'
+import {useRoute, useRouter} from 'vue-router'
 export default {
   name:"Register",
   components: {
     //   'Header': Header,
   },
   
-  props: {
-    connected: { type: Boolean },
-    errors: { type: Object }
+  setup(){
+      const router = useRouter()
+    const route = useRoute()
+
+     onBeforeMount(()=>{
+       firebase.auth().onAuthStateChanged((user)=>{
+        if(user){
+          if(route.name == 'Login' || route.name == 'Register' ){
+            router.replace('/')
+          }
+        }
+      })
+    })
   },
   data () {
     return {
@@ -73,8 +83,8 @@ export default {
   
   methods: {
     register(){
-      const auth= getAuth()
-        createUserWithEmailAndPassword(auth, this.userEmail,this.userPassword)
+      firebase.auth()
+        .createUserWithEmailAndPassword(this.userEmail,this.userPassword)
         .then(() => {
           alert('successfully registered ! Please login.')
           this.$router.push('/Login')

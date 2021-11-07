@@ -11,15 +11,12 @@
       <ul class="top-connexion">
         <router-link to="/Login" >Login</router-link>
         <router-link to="/Register" class="top-connexion__register"> Register </router-link>
+           <button  @click="Logout()" > Logout </button>
       </ul>
     </div>
     <div class="bottom">
       <ul class="bottom-content">
         <router-link to="/">Home</router-link>
-        <!-- <li><a href="#">Gender</a></li> -->
-        <!-- <button class="caret-down">
-          <i class="fas fa-caret-down"> </i>
-        </button> -->
         <div class="dropdown">
           <button class="dropbtn">Category</button>
           <div class="dropdown-content">
@@ -27,15 +24,9 @@
             <a href="#">Action</a>
             <a href="#">Comedy</a>
             <a href="#">Sci-fi</a>
-            <a href="#">Romance</a>
+            <router-link to="/Category">Romance</router-link>
           </div>
         </div>
-
-        <!-- <li><a href="#">Pays</a></li> -->
-        
-        <!-- <button class="caret-down">
-          <i class="fas fa-caret-down"> </i>
-        </button> -->
         <router-link class="router-link" to="/About">About us</router-link>
       </ul>
     </div>
@@ -43,14 +34,26 @@
 </template>
 
 <script>
-// import { getAuth } from 'firebase/auth'
-// const auth = getAuth()
-// const user = auth.currentUser()
+import firebase from 'firebase'
+
 export default {
-  props: {
-    
-  },
  
+
+methods:{
+
+  Logout(){
+
+      if(firebase.auth().currentUser){
+        firebase.auth()
+        .signOut()
+        .then(()=>{
+          alert("Logged out")
+        })
+        .catch(err => alert(err.message))
+      }
+    }
+}
+
 };
 </script>
 
